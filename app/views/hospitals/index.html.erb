@@ -1,27 +1,29 @@
-<h1>Hospitals</h1>
+<div class="row" style="margin-top: 1rem">
+  <div class="col">
+    <h1>Hospitals</h1>
+  </div>
+</div>
 
-<table>
+<table class="table text-center">
   <thead>
     <tr>
-      <th>Id</th>
       <th>Number</th>
-      <th colspan="2"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @hospitals.each do |hospital| %>
       <tr>
-        <td><%= hospital.id %></td>
         <td><%= hospital.number %></td>
-        <td><%= link_to 'Show', hospital %></td>
-        <td><%= link_to 'Edit', edit_hospital_path(hospital) %></td>
-        <td><%= link_to 'Destroy', hospital, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Details', hospital, class: "btn btn-sm btn-dark" %></td>
+        <td><%= link_to 'Change number', edit_hospital_path(hospital), class: "btn btn-sm btn-success" %></td>
+        <td><%= link_to 'Delete hospital', hospital, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Hospital', new_hospital_path %>
+<div class="row">
+  <div class="col">
+    <%= link_to 'New Hospital', new_hospital_path, class: "btn btn-success" %>
+  </div>
+</div>

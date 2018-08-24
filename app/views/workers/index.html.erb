@@ -1,6 +1,10 @@
-<h1>Workers</h1>
+<div class="row" style="margin-top: 1rem">
+  <div class="col">
+    <h1>Workers</h1>  
+  </div>
+</div>
 
-<table class="table table text-center">
+<table class="table text-center">
   <thead>
     <tr>
       <th>Surname</th>
@@ -28,6 +32,8 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Worker', new_worker_path %>
+<div class="row text-center" style="margin-bottom: 10px;">
+  <div class="col">
+    <%= link_to 'Create New Worker', new_worker_path, class: "btn btn-success" %>
+  </div>
+</div>

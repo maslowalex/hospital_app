@@ -1,5 +1,6 @@
 class WorkersController < ApplicationController
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
+  before_action :set_hospital, only: [:show]
 
   # GET /workers
   # GET /workers.json
@@ -95,6 +96,12 @@ class WorkersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_worker
       @worker = Worker.find(params[:id])
+    end
+
+    def set_hospital
+      @hospitals = Hospital.find(@worker.hospital_ids)
+      @numbers = []
+      @hospitals.each { |h| @numbers << h.number }
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

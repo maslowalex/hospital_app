@@ -4,6 +4,7 @@
 	</div>
 </div>
 
+<% if @hospital.actual_workers.present? %>
 <div class="row">
 	<h2>Actual Workers: <%= @hospital.actual_workers.size %></h2>
 	<table class="table table-dark text-center">
@@ -22,13 +23,20 @@
 		      <th scope="row"><%= worker.id %></th>
 		      <td><%= worker.surname %></td>
 		      <td><%= worker.position %></td>
-		      <td><%= link_to 'Profile', worker, class: "btn btn-dark btn-sm" %></td>
+		      <td><%= link_to 'Profile', worker, class: "btn btn-light btn-sm" %></td>
 		      <td><%= button_to 'Delete worker', worker_remove_from_path(worker, hospital_id: @hospital.id), class: "btn btn-danger btn-sm", method: :put %></td>
 		    </tr>
 		  <% end %>
 	  </tbody>
 	</table>
 </div>
+<% else %>
+<div class="row text-center">
+	<div class="col">
+		<h2>There is no actual workers. You can add new.</h2>
+	</div>
+</div>
+<% end %>
 
 <div class="row">
 	<h2>Add new worker (<%= @hospital.avialiable_workers.size %>  workers avialiable)</h2>

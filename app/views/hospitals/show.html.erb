@@ -1,0 +1,61 @@
+<div class="row text-center" style="margin-top: 10px">
+	<div class="col justify-content-center">
+		<h2>Hospital number: <%= @hospital.number %></h2>
+	</div>
+</div>
+
+<div class="row">
+	<h2>Actual Workers: <%= @hospital.actual_workers.size %></h2>
+	<table class="table table-dark text-center">
+	  <thead>
+	    <tr>
+	      <th scope="col">id#</th>
+	      <th scope="col">Surname</th>
+	      <th scope="col">Positiion</th>
+	      <th scope="col">Profile</th>
+	      <th scope="col">Remove</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @hospital.actual_workers.each do |worker| %>
+		    <tr>
+		      <th scope="row"><%= worker.id %></th>
+		      <td><%= worker.surname %></td>
+		      <td><%= worker.position %></td>
+		      <td><%= link_to 'Profile', worker, class: "btn btn-dark btn-sm" %></td>
+		      <td><%= button_to 'Delete worker', worker_remove_from_path(worker, hospital_id: @hospital.id), class: "btn btn-danger btn-sm", method: :put %></td>
+		    </tr>
+		  <% end %>
+	  </tbody>
+	</table>
+</div>
+
+<div class="row">
+	<h2>Add new worker (<%= @hospital.avialiable_workers.size %>  workers avialiable)</h2>
+	<table class="table table text-center">
+	  <thead>
+	    <tr>
+	      <th scope="col">id#</th>
+	      <th scope="col">Surname</th>
+	      <th scope="col">Birth year</th>
+	      <th scope="col">Position</th>
+	      <th scope="col">Add</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+			<% @hospital.avialiable_workers.each do |worker|  %>
+				<tr>
+				 	<th><%= worker.id %></th>
+				 	<td><%= worker.surname %></td>
+				 	<td><%= worker.birth_year %></td>
+				 	<td><%= worker.position %></td>
+				 	<td>
+				 		<%= form_tag worker_add_to_path(worker.id, hospital_id: @hospital.id), method: "put" do %>
+						<%= submit_tag 'Add worker', class: "btn btn-primary btn-sm" %>
+						<% end %>
+				 	</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,33 @@
+<h1>Workers</h1>
+
+<table class="table table text-center">
+  <thead>
+    <tr>
+      <th>Surname</th>
+      <th>Birth year</th>
+      <th>Position</th>
+      <th>Hospital</th>
+      <th>Detail</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @workers.each do |worker| %>
+      <tr>
+        <td><%= worker.surname %></td>
+        <td><%= worker.birth_year %></td>
+        <td><%= worker.position %></td>
+        <td><%= worker.hospital_ids %></td>
+        <td><%= link_to 'Profile', worker, class: "btn btn-light btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_worker_path(worker), class: "btn btn-success btn-sm" %></td>
+        <td><%= link_to 'Destroy', worker, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Worker', new_worker_path %>

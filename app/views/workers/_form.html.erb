@@ -1,0 +1,37 @@
+<%= form_with(model: worker, local: true) do |form| %>
+  <% if worker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(worker.errors.count, "error") %> prohibited this worker from being saved:</h2>
+
+      <ul>
+      <% worker.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :surname %>
+    <%= form.text_field :surname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birth_year %>
+    <%= form.number_field :birth_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.select(:position, [['doctor'], ['medsister'], ['fieldshire']]) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hospital_ids %>
+    <%= form.collection_check_boxes(:hospital_ids, Hospital.all, :id, :number) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

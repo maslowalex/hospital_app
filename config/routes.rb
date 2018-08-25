@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :hospitals
 
   resources :workers do
-  	put 'remove_from'
-  	put 'add_to'
+  	put 'edit_hospital'
   end
 
   root to: 'hospitals#index'

@@ -13,6 +13,20 @@
     <% flash.each do |key, value| %>
       <%= content_tag :div, value, class: "alert alert-success text-center" %>
     <% end %>
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to 'Workers', workers_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Hospitals', root_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'New worker', new_worker_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'New hospital', new_hospital_path, class: "nav-link" %>
+    </li>
+  </ul>
     <div class="container">
       <%= yield %>
     </div>

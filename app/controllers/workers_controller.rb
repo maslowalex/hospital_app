@@ -62,32 +62,28 @@ class WorkersController < ApplicationController
     end
   end
 
-  def remove_from
+  def edit_hospital
     @worker = Worker.find(params[:worker_id])
     @hospital = Hospital.find(params[:hospital_id])
     arr = []
     arr << @worker.id
-    @result = @hospital.worker_ids - arr
-    unless @worker.hospital_ids.include?(@hospital_id)
-      respond_to do |format|
-        @hospital.update_attribute(:worker_ids, @result)
-        format.html { redirect_to @hospital, notice: 'Worker was successfully destroyed.' }
-        format.json { render :show, status: :ok, location: @hospital }
+    if params[:commit] == "Add"
+      @result = @hospital.worker_ids + arr
+      unless @worker.hospital_ids.include?(@hospital_id)
+        respond_to do |format|
+          @hospital.update_attribute(:worker_ids, @result)
+          format.html { redirect_to @hospital, notice: 'Worker was successfully added!' }
+          format.json { render :show, status: :ok, location: @hospital }
+        end
       end
-    end
-  end
-
-  def add_to
-    @worker = Worker.find(params[:worker_id])
-    @hospital = Hospital.find(params[:hospital_id])
-    arr = []
-    arr << @worker.id
-    @result = @hospital.worker_ids + arr
-    unless @worker.hospital_ids.include?(@hospital_id)
-      respond_to do |format|
-        @hospital.update_attribute(:worker_ids, @result)
-        format.html { redirect_to @hospital, notice: 'Worker was successfully added!' }
-        format.json { render :show, status: :ok, location: @hospital }
+    else
+      @result = @hospital.worker_ids - arr
+      unless @worker.hospital_ids.include?(@hospital_id)
+        respond_to do |format|
+          @hospital.update_attribute(:worker_ids, @result)
+          format.html { redirect_to @hospital, notice: 'Worker was successfully destroyed.' }
+          format.json { render :show, status: :ok, location: @hospital }
+        end
       end
     end
   end

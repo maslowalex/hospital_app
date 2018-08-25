@@ -24,7 +24,7 @@
 		      <td><%= worker.surname %></td>
 		      <td><%= worker.position %></td>
 		      <td><%= link_to 'Profile', worker, class: "btn btn-light btn-sm" %></td>
-		      <td><%= button_to 'Delete worker', worker_remove_from_path(worker, hospital_id: @hospital.id), class: "btn btn-danger btn-sm", method: :put %></td>
+		      <td><%= button_to 'Delete worker', worker_edit_hospital_path(worker, hospital_id: @hospital.id, commit: "Delete"), class: "btn btn-danger btn-sm", method: :put %></td>
 		    </tr>
 		  <% end %>
 	  </tbody>
@@ -47,6 +47,7 @@
 	      <th scope="col">Surname</th>
 	      <th scope="col">Birth year</th>
 	      <th scope="col">Position</th>
+	      <th scope="col">Profile</th>
 	      <th scope="col">Add</th>
 	    </tr>
 	  </thead>
@@ -57,8 +58,9 @@
 				 	<td><%= worker.surname %></td>
 				 	<td><%= worker.birth_year %></td>
 				 	<td><%= worker.position %></td>
+				 	<td><%= link_to 'Profile', worker, class: "btn btn-dark btn-sm" %></td>
 				 	<td>
-				 		<%= form_tag worker_add_to_path(worker.id, hospital_id: @hospital.id), method: "put" do %>
+				 		<%= form_tag worker_edit_hospital_path(worker.id, hospital_id: @hospital.id, commit: "Add"), method: "put" do %>
 						<%= submit_tag 'Add worker', class: "btn btn-primary btn-sm" %>
 						<% end %>
 				 	</td>

@@ -5,7 +5,7 @@ class WorkersController < ApplicationController
   # GET /workers
   # GET /workers.json
   def index
-    @workers = Worker.all.limit(100)
+    @workers = Worker.includes(:hospitals).limit(100)
   end
 
   # GET /workers/1

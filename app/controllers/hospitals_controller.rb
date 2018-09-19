@@ -31,7 +31,7 @@ class HospitalsController < ApplicationController
         format.html { redirect_to @hospital, notice: 'Hospital was successfully created.' }
         format.json { render :show, status: :created, location: @hospital }
       else
-        format.html { render :new }
+        format.html { redirect_to new_hospital_path, alert: 'Hospatal was not been created.' }
         format.json { render json: @hospital.errors, status: :unprocessable_entity }
       end
     end
